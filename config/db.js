@@ -15,7 +15,7 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
-// Test connection on startup
+// Test connection on startup (non-fatal — important for serverless environments like Vercel)
 pool.getConnection()
   .then(conn => {
     console.log('✅ MySQL connected successfully');
@@ -23,7 +23,8 @@ pool.getConnection()
   })
   .catch(err => {
     console.error('❌ MySQL connection failed:', err.message);
-    process.exit(1);
+    // Do NOT exit here — on Vercel this would crash the serverless function silently.
+    // Let actual queries fail with a proper error response instead.
   });
 
 module.exports = pool;
