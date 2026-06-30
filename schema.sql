@@ -4,8 +4,7 @@
 --  mysql -u root -p < schema.sql
 -- ─────────────────────────────────────────────
 
-CREATE DATABASE IF NOT EXISTS ironcore_gym;
-USE ironcore_gym;
+
 
 -- ── MEMBERSHIP PLANS ──
 CREATE TABLE IF NOT EXISTS plans (
